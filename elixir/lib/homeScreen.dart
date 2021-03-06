@@ -56,44 +56,56 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 16.0, left: 8.0, right: 8.0),
-        child: Container(
-          height: screenHeightExcludingToolbar(context, dividedBy: 3),
-          color: Colors.grey[300],
-          child: Padding(
-            padding: const EdgeInsets.only(top: 48.0, left: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Hello!',
-                    style:
-                        TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                    'Welcome to Elixir. A safe and secure way to share your medical records online.'),
-                SizedBox(height: 10),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shadowColor: Colors.grey,
-                      minimumSize: Size(40.0, 50.0),
-                      elevation: 5,
+        child: Column(
+          children: [
+            Container(
+              height: screenHeightExcludingToolbar(context, dividedBy: 3),
+              color: Colors.grey[300],
+              child: Padding(
+                padding: const EdgeInsets.only(top: 48.0, left: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Hello!',
+                        style: TextStyle(
+                            fontSize: 35.0, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    child: Text('JOIN NOW'),
-                    onPressed: () {
-                      print('pressed');
-                    },
-                  ),
-                )
-              ],
+                    SizedBox(height: 10),
+                    Text(
+                        'Welcome to Elixir. A safe and secure way to share your medical records online.'),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.grey,
+                          minimumSize: Size(40.0, 50.0),
+                          elevation: 5,
+                        ),
+                        child: Text('JOIN NOW'),
+                        onPressed: () {
+                          print('pressed');
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text('Copyright © PurplePotion'),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
