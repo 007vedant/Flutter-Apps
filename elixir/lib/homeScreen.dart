@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:elixir/loginScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       endDrawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
+          children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
@@ -46,9 +47,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             ListTile(
-              title: Text('Login'),
-              trailing: Icon(
-                Icons.account_circle,
+              title: TextButton.icon(
+                style: ButtonStyle(),
+                label: Text('Login'),
+                icon: Icon(Icons.account_circle),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                },
               ),
             ),
           ],
