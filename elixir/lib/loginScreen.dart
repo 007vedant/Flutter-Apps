@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:elixir/signupScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -12,33 +14,106 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Login'),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text("Elixir"),
       ),
-      body: new Container(
-          child: Column(
-        children: <Widget>[
-          Text('Sign In'),
-          new Form(
-            child: new Column(
-              children: <Widget>[
-                new TextFormField(
-                  decoration: new InputDecoration(labelText: 'Email'),
-                ),
-                new TextFormField(
-                  decoration: new InputDecoration(labelText: 'Password'),
-                ),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 60.0),
+              child: Text(
+                'Login',
+                style: TextStyle(fontSize: 35),
+              ),
             ),
-          ),
-          Row(
-            children: <Widget>[
-              Text('User Type: '),
-            ],
-          )
-        ],
-      )),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              //padding: const EdgeInsets.only(left:16.0,right: 16.0,top:0,bottom: 0),
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                    hintText: 'Enter valid email id'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 10, bottom: 0),
+              //padding: EdgeInsets.symmetric(horizontal: 16),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                    hintText: 'Enter password'),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 10, bottom: 0),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    'User Type:',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 50,
+              width: 100,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.grey,
+                  elevation: 5,
+                ),
+                child: Text('Login'),
+                onPressed: () {
+                  print('pressed');
+                },
+              ),
+            ),
+            SizedBox(
+              height: 130,
+            ),
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(children: <InlineSpan>[
+                TextSpan(
+                    text: 'New User? ',
+                    style: TextStyle(color: Colors.black87)),
+                TextSpan(
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignupScreen(),
+                        ),
+                      );
+                    },
+                  text: 'Create Account',
+                  style: TextStyle(
+                      color: Colors.blueAccent, fontWeight: FontWeight.bold),
+                ),
+              ]),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
