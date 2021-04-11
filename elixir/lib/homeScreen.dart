@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:elixir/loginScreen.dart';
+import 'package:elixir/signupScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -94,7 +95,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Text('JOIN NOW'),
                         onPressed: () {
-                          print('pressed');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignupScreen(),
+                            ),
+                          );
                         },
                       ),
                     ),
