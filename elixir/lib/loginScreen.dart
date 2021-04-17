@@ -11,6 +11,20 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   String _email, password;
+  String _radioValue = "patient";
+
+  void _radioHandler(String user) {
+    setState(() {
+      _radioValue = user;
+
+      switch (_radioValue) {
+        case "patient":
+          break;
+        case "doctor":
+          break;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +75,27 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.only(
                   left: 16.0, right: 16.0, top: 10, bottom: 0),
               child: Row(
-                children: <Widget>[
+                children: [
                   Text(
                     'User Type:',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Radio(
+                    value: "patient",
+                    groupValue: _radioValue,
+                    onChanged: _radioHandler,
+                  ),
+                  Text(
+                    'Patient',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Radio(
+                    value: "doctor",
+                    groupValue: _radioValue,
+                    onChanged: _radioHandler,
+                  ),
+                  Text(
+                    'Doctor',
                     style: TextStyle(fontSize: 20),
                   ),
                 ],
