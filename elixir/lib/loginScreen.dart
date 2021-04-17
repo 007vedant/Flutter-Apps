@@ -49,23 +49,19 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               //padding: const EdgeInsets.only(left:16.0,right: 16.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: TextField(
+              child: TextFormField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email id'),
+                    labelText: 'Email', hintText: 'Enter valid email id'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
                   left: 16.0, right: 16.0, top: 10, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 16),
-              child: TextField(
+              child: TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter password'),
+                    labelText: 'Password', hintText: 'Enter password'),
               ),
             ),
             SizedBox(
