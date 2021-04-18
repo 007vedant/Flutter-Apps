@@ -10,8 +10,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String _email, password;
   String _radioValue = "patient";
+  String _email, _password;
 
   void _radioHandler(String user) {
     setState(() {
@@ -25,6 +25,14 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     });
   }
+
+  // final feedController = TextEditingController();
+
+  // @override
+  // void dispose() {
+  //   feedController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +60,9 @@ class _LoginScreenState extends State<LoginScreen> {
               child: TextFormField(
                 decoration: InputDecoration(
                     labelText: 'Email', hintText: 'Enter valid email id'),
+                onChanged: (email) {
+                  _email = email;
+                },
               ),
             ),
             Padding(
@@ -62,6 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelText: 'Password', hintText: 'Enter password'),
+                onChanged: (password) {
+                  _password = password;
+                },
               ),
             ),
             SizedBox(
@@ -110,7 +124,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 child: Text('Login'),
                 onPressed: () {
-                  print('pressed');
+                  print(
+                      'Email: $_email\n Password: $_password\n User: $_radioValue');
                 },
               ),
             ),
