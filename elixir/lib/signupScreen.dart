@@ -10,7 +10,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  String _email, _password;
+  String _name, _email, _password, _cpassword;
   String _radioValue = "patient";
 
   void _radioHandler(String user) {
@@ -51,6 +51,9 @@ class _SignupScreenState extends State<SignupScreen> {
               child: TextFormField(
                 decoration:
                     InputDecoration(labelText: 'Name', hintText: 'Enter name'),
+                onChanged: (name) {
+                  _name = name;
+                },
               ),
             ),
             Padding(
@@ -58,6 +61,9 @@ class _SignupScreenState extends State<SignupScreen> {
               child: TextFormField(
                 decoration: InputDecoration(
                     labelText: 'Email', hintText: 'Enter valid email id'),
+                onChanged: (email) {
+                  _email = email;
+                },
               ),
             ),
             Padding(
@@ -68,6 +74,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelText: 'Password', hintText: 'Enter password'),
+                onChanged: (password) {
+                  _password = password;
+                },
               ),
             ),
             Padding(
@@ -79,6 +88,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: InputDecoration(
                     labelText: 'Confirm Password',
                     hintText: 'Enter confirm password'),
+                onChanged: (cpassword) {
+                  _cpassword = cpassword;
+                },
               ),
             ),
             SizedBox(
@@ -127,7 +139,20 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 child: Text('Register'),
                 onPressed: () {
-                  print('pressed');
+                  if (_password != _cpassword) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Icon(Icons.error, color: Colors.red),
+                          content: Text("      Passwords do not match."),
+                        );
+                      },
+                    );
+                  } else {
+                    print(
+                        'Name: $_name\n Email: $_email\n Password: $_password\n User: $_radioValue');
+                  }
                 },
               ),
             ),
