@@ -29,6 +29,40 @@ class _PProfileScreenState extends State<PProfileScreen> {
       appBar: new AppBar(
         title: new Text('Elixir'),
       ),
+      endDrawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.notification_important_rounded),
+              title: Text("Notifications"),
+              onTap: () {
+                print("notifications pressed");
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("Logout"),
+              onTap: () {
+                print("logout pressed");
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Container(),
     );
   }
 }
