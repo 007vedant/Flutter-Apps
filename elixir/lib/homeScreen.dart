@@ -48,15 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             ListTile(
-              title: TextButton.icon(
-                style: ButtonStyle(),
-                label: Text('Login'),
-                icon: Icon(Icons.account_circle),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
-                },
-              ),
+              leading: Icon(Icons.login_rounded),
+              title: Text("Log In"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+              },
             ),
           ],
         ),
