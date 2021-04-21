@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:elixir/signupScreen.dart';
+import 'package:elixir/profile/patient/pprofileScreen.dart';
+import 'package:elixir/profile/doctor/dprofileScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -25,14 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     });
   }
-
-  // final feedController = TextEditingController();
-
-  // @override
-  // void dispose() {
-  //   feedController.dispose();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -124,8 +118,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 child: Text('Login'),
                 onPressed: () {
-                  print(
-                      'Email: $_email\n Password: $_password\n User: $_radioValue');
+                  if (_radioValue == 'patient') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PProfileScreen(),
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DProfileScreen(),
+                      ),
+                    );
+                  }
                 },
               ),
             ),
