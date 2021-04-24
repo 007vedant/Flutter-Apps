@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:elixir/profile/common/profileCard.dart';
 
 class DProfileScreen extends StatefulWidget {
   @override
@@ -8,21 +9,6 @@ class DProfileScreen extends StatefulWidget {
 }
 
 class _DProfileScreenState extends State<DProfileScreen> {
-  Size screenSize(BuildContext context) {
-    return MediaQuery.of(context).size;
-  }
-
-  double screenHeight(BuildContext context,
-      {double dividedBy = 1, double reducedBy = 0.0}) {
-    return (screenSize(context).height - reducedBy) / dividedBy;
-  }
-
-  double screenHeightExcludingToolbar(BuildContext context,
-      {double dividedBy = 1}) {
-    return screenHeight(context,
-        dividedBy: dividedBy, reducedBy: kToolbarHeight);
-  }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -62,7 +48,15 @@ class _DProfileScreenState extends State<DProfileScreen> {
           ],
         ),
       ),
-      body: Container(),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            ProfileCard(
+              userInfo: ["85D4893491", "John Doe", "johndoe@gmail.com"],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
