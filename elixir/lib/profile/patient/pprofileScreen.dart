@@ -32,6 +32,13 @@ class _PProfileScreenState extends State<PProfileScreen> {
               ),
             ),
             ListTile(
+              leading: Icon(Icons.post_add_rounded),
+              title: Text("Add Record"),
+              onTap: () {
+                print("add_record pressed");
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.notification_important_rounded),
               title: Text("Notifications"),
               onTap: () {
