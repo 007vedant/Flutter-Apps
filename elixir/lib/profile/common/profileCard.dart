@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProfileCard extends StatefulWidget {
   final List<String> userInfo;
-  ProfileCard({this.userInfo});
+  ProfileCard({required this.userInfo});
 
   @override
   _ProfileCardState createState() => _ProfileCardState();

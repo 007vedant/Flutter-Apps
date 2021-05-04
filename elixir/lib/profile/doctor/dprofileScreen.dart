@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:elixir/profile/common/profileCard.dart';
 
 class DProfileScreen extends StatefulWidget {
+  final String id, name, email;
+  const DProfileScreen(this.id, this.name, this.email);
   @override
   State<StatefulWidget> createState() {
     return new _DProfileScreenState();
@@ -52,7 +54,7 @@ class _DProfileScreenState extends State<DProfileScreen> {
         child: Column(
           children: <Widget>[
             ProfileCard(
-              userInfo: ["85D4893491", "John Doe", "johndoe@gmail.com"],
+              userInfo: [widget.id, widget.name, widget.email],
             ),
           ],
         ),
