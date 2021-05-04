@@ -3,6 +3,12 @@ import 'package:flutter/gestures.dart';
 import 'package:elixir/loginScreen.dart';
 import 'package:elixir/profile/patient/pprofileScreen.dart';
 import 'package:elixir/profile/doctor/dprofileScreen.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'dart:async';
+import 'dart:convert';
+
+final storage = FlutterSecureStorage();
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -12,10 +18,10 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  String _name, _email, _password, _cpassword;
-  String _radioValue = "patient";
+  String? _name, _email, _password, _cpassword;
+  String? _radioValue = "patient";
 
-  void _radioHandler(String user) {
+  void _radioHandler(String? user) {
     setState(() {
       _radioValue = user;
 
@@ -140,7 +146,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   elevation: 5,
                 ),
                 child: Text('Register'),
-                onPressed: () {
+                onPressed: () async {
                   if (_password != _cpassword) {
                     showDialog(
                       context: context,
@@ -152,17 +158,27 @@ class _SignupScreenState extends State<SignupScreen> {
                       },
                     );
                   } else {
+                    User resp =
+                        await signup(_name, _email, _password, _radioValue);
                     if (_radioValue == "patient") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => PProfileScreen()),
+                          builder: (context) => PProfileScreen(
+                              resp.id.toString(),
+                              resp.name.toString(),
+                              resp.email.toString()),
+                        ),
                       );
                     } else {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DProfileScreen()),
+                          builder: (context) => DProfileScreen(
+                              resp.id.toString(),
+                              resp.name.toString(),
+                              resp.email.toString()),
+                        ),
                       );
                     }
                   }
@@ -199,4 +215,54 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+}
+
+class User {
+  String? email;
+  String? id;
+  String? name;
+  String? token;
+  String? userType;
+
+  User({this.email, this.id, this.name, this.token, this.userType});
+
+  User.fromJson(Map<String, dynamic> json) {
+    email = json['email'];
+    id = json['id'];
+    name = json['name'];
+    token = json['token'];
+    userType = json['userType'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['email'] = this.email;
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['token'] = this.token;
+    data['userType'] = this.userType;
+    return data;
+  }
+}
+
+Future<User> signup(
+    String? name, String? email, String? password, String? userType) async {
+  final resp = await http.post(
+    Uri.parse('https://project-elixir-server.herokuapp.com/api/users'),
+    headers: <String, String>{
+      'Content-Type': 'application/json',
+    },
+    body: jsonEncode(<String, String?>{
+      "name": name,
+      "email": email,
+      "password": password,
+      "userType": userType
+    }),
+  );
+  print(resp.statusCode);
+  if (resp.statusCode == 200) {
+    User? data = User.fromJson(jsonDecode(resp.body));
+    return data;
+  }
+  return User();
 }
